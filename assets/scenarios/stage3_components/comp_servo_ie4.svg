@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <filter id="shadowServo" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <!-- ISOMETRIC SERVO MOTOR IE4 (2.5D GAME ART) -->
+  <g filter="url(#shadowServo)">
+    <!-- Motor Body Cylinder / Box (Blue Industrial) -->
+    <path d="M 40,75 L 85,50 L 125,73 L 80,98 Z" fill="#0284C7" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 40,75 L 40,110 L 80,133 L 80,98 Z" fill="#0369A1" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 80,98 L 80,133 L 125,108 L 125,73 Z" fill="#38BDF8" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- Cooling Fins -->
+    <path d="M 50,70 L 50,105" stroke="#0F172A" stroke-width="2"/>
+    <path d="M 60,65 L 60,100" stroke="#0F172A" stroke-width="2"/>
+    <path d="M 70,60 L 70,95" stroke="#0F172A" stroke-width="2"/>
+
+    <!-- Front Drive Flange & Shaft -->
+    <ellipse cx="125" cy="90" rx="10" ry="18" fill="#94A3B8" stroke="#0F172A" stroke-width="2"/>
+    <path d="M 125,85 L 145,74 L 145,86 L 125,97 Z" fill="#CBD5E1" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    
+    <!-- STO Safety Brake Terminal (Yellow Box on top) -->
+    <path d="M 60,50 L 78,40 L 96,50 L 78,60 Z" fill="#FACC15" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M 60,50 L 60,62 L 78,72 L 78,60 Z" fill="#CA8A04" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M 78,60 L 78,72 L 96,62 L 96,50 Z" fill="#EAB308" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    <text x="76" y="58" font-size="6" font-family="monospace" font-weight="bold" fill="#0F172A" transform="skewY(-15)">STO</text>
+  </g>
+</svg>

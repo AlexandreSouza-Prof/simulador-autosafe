@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <!-- ISOMETRIC RFID SAFETY SWITCH (2.5D GAME ART) -->
+  <g filter="url(#shadow)">
+    <!-- Main Body Back Plate -->
+    <path d="M 40,75 L 75,55 L 110,75 L 75,95 Z" fill="#EAB308" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Body Extrusion -->
+    <path d="M 40,75 L 40,115 L 75,135 L 75,95 Z" fill="#CA8A04" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 75,95 L 75,135 L 110,115 L 110,75 Z" fill="#FACC15" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    
+    <!-- Lock Head Metal Collar -->
+    <path d="M 52,50 L 75,37 L 98,50 L 75,63 Z" fill="#94A3B8" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 52,50 L 52,65 L 75,78 L 75,63 Z" fill="#64748B" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 75,63 L 75,78 L 98,65 L 98,50 Z" fill="#CBD5E1" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- Key Tongue / RFID Actuator entering head -->
+    <path d="M 68,20 L 82,12 L 82,38 L 68,46 Z" fill="#F8FAFC" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 72,25 L 78,21 L 78,32 L 72,36 Z" fill="#0EA5E9"/>
+
+    <!-- Status LEDs -->
+    <circle cx="85" cy="98" r="4" fill="#22C55E" stroke="#0F172A" stroke-width="1.5"/>
+    <circle cx="95" cy="92" r="4" fill="#EAB308" stroke="#0F172A" stroke-width="1.5"/>
+
+    <!-- RFID Symbol / Antenna Icon -->
+    <path d="M 82,112 A 8 8 0 0 1 96,104" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 85,116 A 12 12 0 0 1 102,106" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

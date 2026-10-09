@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <filter id="shadowRel" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <!-- ISOMETRIC COMMON RELAYS (2.5D GAME ART) -->
+  <g filter="url(#shadowRel)">
+    <!-- Base Socket Black -->
+    <path d="M 30,85 L 75,60 L 120,85 L 75,110 Z" fill="#334155" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 30,85 L 30,110 L 75,135 L 75,110 Z" fill="#1E293B" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 75,110 L 75,135 L 120,110 L 120,85 Z" fill="#475569" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- Clear Relay Enclosure 1 -->
+    <path d="M 45,65 L 65,54 L 85,65 L 65,76 Z" fill="rgba(148, 163, 184, 0.6)" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M 45,65 L 45,95 L 65,106 L 65,76 Z" fill="rgba(100, 116, 139, 0.7)" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M 65,76 L 65,106 L 85,95 L 85,65 Z" fill="rgba(203, 213, 225, 0.7)" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Internal Copper Coil 1 -->
+    <ellipse cx="65" cy="85" rx="7" ry="10" fill="#EA580C" stroke="#9A3412" stroke-width="1.5"/>
+
+    <!-- Clear Relay Enclosure 2 -->
+    <path d="M 75,48 L 95,37 L 115,48 L 95,59 Z" fill="rgba(148, 163, 184, 0.6)" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M 75,48 L 75,78 L 95,89 L 95,59 Z" fill="rgba(100, 116, 139, 0.7)" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M 95,59 L 95,89 L 115,78 L 115,48 Z" fill="rgba(203, 213, 225, 0.7)" stroke="#0F172A" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Internal Copper Coil 2 -->
+    <ellipse cx="95" cy="68" rx="7" ry="10" fill="#EA580C" stroke="#9A3412" stroke-width="1.5"/>
+  </g>
+</svg>

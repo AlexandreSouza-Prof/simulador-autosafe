@@ -1,0 +1,27 @@
+# ===================================================================
+# AutoSafe 4.0 - .gitignore
+# ===================================================================
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Ambientes de Desenvolvimento e IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs e arquivos de depuração
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Materiais base brutos / apresentações locais não utilizadas pelo simulador
+base/
+*.pptx
+
+# Configurações de agentes de desenvolvimento local
+.agents/

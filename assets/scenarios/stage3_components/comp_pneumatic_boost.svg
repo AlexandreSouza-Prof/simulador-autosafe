@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <filter id="shadowPneu" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <!-- ISOMETRIC PNEUMATIC VALVE BLOCK (2.5D GAME ART) -->
+  <g filter="url(#shadowPneu)">
+    <!-- Aluminum Manifold Base -->
+    <path d="M 35,80 L 80,55 L 125,80 L 80,105 Z" fill="#CBD5E1" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 35,80 L 35,110 L 80,135 L 80,105 Z" fill="#94A3B8" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M 80,105 L 80,135 L 125,110 L 125,80 Z" fill="#E2E8F0" stroke="#0F172A" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- Solenoid Coils (Black cylinders on top) -->
+    <ellipse cx="60" cy="65" rx="8" ry="5" fill="#1E293B" stroke="#0F172A" stroke-width="2"/>
+    <path d="M 52,65 L 52,50 L 68,50 L 68,65 Z" fill="#334155" stroke="#0F172A" stroke-width="2"/>
+    <ellipse cx="60" cy="50" rx="8" ry="5" fill="#475569" stroke="#0F172A" stroke-width="2"/>
+
+    <ellipse cx="85" cy="50" rx="8" ry="5" fill="#1E293B" stroke="#0F172A" stroke-width="2"/>
+    <path d="M 77,50 L 77,35 L 93,35 L 93,50 Z" fill="#334155" stroke="#0F172A" stroke-width="2"/>
+    <ellipse cx="85" cy="35" rx="8" ry="5" fill="#475569" stroke="#0F172A" stroke-width="2"/>
+
+    <!-- Pneumatic Blue Hoses / Quick Fittings -->
+    <path d="M 60,85 C 50,95 40,100 25,95" fill="none" stroke="#2563EB" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 75,93 C 65,105 55,110 40,115" fill="none" stroke="#2563EB" stroke-width="5" stroke-linecap="round"/>
+    <path d="M 90,100 C 100,115 110,120 120,125" fill="none" stroke="#0284C7" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Brass Silencer / Exhaust -->
+    <ellipse cx="110" cy="95" rx="6" ry="4" fill="#EAB308" stroke="#0F172A" stroke-width="1.5"/>
+  </g>
+</svg>

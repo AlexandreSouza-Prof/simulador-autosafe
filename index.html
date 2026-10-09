@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>AutoSafe 4.0 - Simulador de Segurança e Conformidade na Automação Industrial</title>
+  <meta name="description" content="Plataforma gamificada interativa para capacitação de técnicos em normas de segurança (NR-10, NR-12, NR-17), ergonomia biomecânica e adequação industrial.">
+  <link rel="stylesheet" href="css/styles.css?v=4.5">
+</head>
+<body>
+
+  <!-- ===================================================================
+       HEADER & SUPERVISÓRIO INDUSTRIAL
+       =================================================================== -->
+  <header class="scada-header" id="scada-main-header">
+    <div class="brand-wrapper">
+      <div class="brand-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="m9 12 2 2 4-4"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="brand-title">AUTOSAFE 4.0</h1>
+        <div class="brand-subtitle">SIMULADOR INDUSTRIAL DE CONFORMIDADE</div>
+      </div>
+    </div>
+
+    <!-- Navegação das Etapas -->
+    <nav class="stages-nav" aria-label="Etapas da Trilha">
+      <button class="stage-pill locked" id="nav-stage-1" disabled title="Preencha o cadastro para desbloquear">
+        <span class="stage-badge-num">1</span>
+        <span>Inspeção de Riscos</span>
+      </button>
+      <button class="stage-pill locked" id="nav-stage-2" disabled title="Preencha o cadastro para desbloquear">
+        <span class="stage-badge-num">2</span>
+        <span>Procedimentos de Campo</span>
+      </button>
+      <button class="stage-pill locked" id="nav-stage-3" disabled title="Preencha o cadastro para desbloquear">
+        <span class="stage-badge-num">3</span>
+        <span>Segurança no Projeto</span>
+      </button>
+    </nav>
+
+    <!-- Indicadores do Aluno e Pontuação -->
+    <div class="student-bar-stats">
+      <div class="stat-pill">
+        <span class="stat-pill-label">Inspecionante</span>
+        <span class="stat-pill-value" id="hud-student-name">Não Registrado</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-pill-label">Turma</span>
+        <span class="stat-pill-value" id="hud-student-class">-</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-pill-label">Pontuação</span>
+        <span class="stat-pill-value score" id="hud-score-value">0</span>
+      </div>
+      <button class="audio-toggle-btn" id="btn-toggle-audio" title="Alternar Efeitos Sonoros" aria-label="Som">
+        🔊
+      </button>
+      <button class="reset-game-btn" id="btn-reset-header" onclick="appRouter.resetProgress()" title="Recomeçar Jogo (Limpar Dados e Reiniciar)" aria-label="Recomeçar Jogo">
+        <span>🔄</span>
+        <span>Recomeçar</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       VIEWPORT PRINCIPAL
+       =================================================================== -->
+  <main class="main-viewport">
+
+    <!-- VIEW 0: BOAS-VINDAS & REGISTRO DO ALUNO -->
+    <section class="view-section active" id="view-welcome">
+      <div class="welcome-hero">
+        <div>
+          <div class="hero-tag">
+            <span class="hero-tag-pulse"></span>
+            <span>PROGRAMA TÉCNICO EM AUTOMAÇÃO INDUSTRIAL</span>
+          </div>
+          <h2 class="hero-title">Domine as Normas de <span>Segurança e Ergonomia</span> na Prática.</h2>
+          <p class="hero-desc">
+            Atue como inspetor, técnico operacional e projetista. Identifique riscos críticos em chão de fábrica (NR-10, NR-12 e NR-17), execute procedimentos normativos e gere o relatório da atividade prática ao concluir o simulador.
+          </p>
+
+          <div class="features-grid">
+            <div class="feature-box">
+              <h4>🎯 Inspeção de Riscos</h4>
+              <p>Explore cenários industriais e descubra infrações de segurança ocultas.</p>
+            </div>
+            <div class="feature-box">
+              <h4>🔒 Bloqueio de Energia (LOTO)</h4>
+              <p>Simule a desenergização segura de painéis e chaves de bloqueio.</p>
+            </div>
+            <div class="feature-box">
+              <h4>🧍 Ergonomia Biomecânica</h4>
+              <p>Ajuste bancadas e postos robotizados para manter a linha neutra.</p>
+            </div>
+            <div class="feature-box">
+              <h4>📄 Relatório em PDF</h4>
+              <p>Exporte o relatório com o registro de todas as tarefas práticas executadas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário de Identificação do Aluno -->
+        <div class="student-reg-card">
+          <h3 class="reg-card-title">Identificação do Aluno</h3>
+          <p class="reg-card-desc">Informe seus dados para registrar seu progresso individual e gerar o relatório da atividade prática.</p>
+
+          <form id="student-reg-form">
+            <div class="form-group">
+              <label class="form-label" for="reg-student-name">Nome Completo do Aluno</label>
+              <input type="text" id="reg-student-name" class="form-input" placeholder="Ex: Lucas Gabriel da Silva" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-student-class">Identificação da Turma / Turno</label>
+              <input type="text" id="reg-student-class" class="form-input" placeholder="Ex: AUT-2026-N1 / Noite" required>
+            </div>
+            <button type="submit" class="btn-primary" id="btn-start-game">
+              <span>Iniciar Trilha de Treinamento</span>
+              <span>➔</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 1: ETAPA 1 - INSPEÇÃO DE RISCOS -->
+    <section class="view-section" id="view-stage1">
+      <div class="stage-top-bar">
+        <div>
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;">
+            Etapa 1: Inspeção de Riscos no Chão de Fábrica
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Clique nos pontos de risco destacados no cenário, analise a não-conformidade técnica e responda à pergunta diagnóstica.
+          </p>
+        </div>
+        <div class="scenario-tabs" id="scenario-tabs-container">
+          <!-- Renderizado via JS -->
+        </div>
+      </div>
+
+      <div class="stage-layout" style="margin-top: 1.25rem;">
+        <!-- Canvas Gráfico do Cenário Industrial -->
+        <div class="hazard-canvas-container" id="hazard-canvas-container">
+          <!-- SVG dinâmico injetado via stage1.js -->
+        </div>
+
+        <!-- Checklist Lateral Dinâmico -->
+        <aside class="hazard-sidebar">
+          <div class="sidebar-heading">
+            <h3>Checklist de Perigos</h3>
+            <span class="sidebar-count" id="sidebar-count-display">0 / 12</span>
+          </div>
+          <div class="checklist-items-container" id="checklist-items-container">
+            <!-- Itens de perigo renderizados dinamicamente -->
+          </div>
+
+          <div class="stage-actions-box">
+            <button class="btn-next-stage" style="width: 100%;" id="btn-next-stage1" onclick="appRouter.showView('stage2')" disabled>
+              <span>Avançar para Etapa 2 ➔</span>
+            </button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Painel de Metas e Critérios de Aprovação (Rodapé da Etapa) -->
+      <footer class="stage-criteria-banner" id="stage1-criteria-banner" style="margin-top: 1.5rem;">
+        <div class="criteria-header">
+          <div class="criteria-title">
+            <span class="criteria-icon">🎯</span>
+            <div>
+              <strong>Critério de Aprovação da Etapa 1</strong>
+              <span class="criteria-subtitle">Meta necessária para habilitar a Etapa 2 (Procedimentos de Campo)</span>
+            </div>
+          </div>
+          <div class="criteria-status-badge" id="criteria-badge-status">
+            <span class="status-dot"></span>
+            <span id="criteria-status-text">🔒 Bloqueado (Em Avaliação)</span>
+          </div>
+        </div>
+
+        <div class="criteria-metrics-grid">
+          <div class="criteria-metric-card" id="metric-card-correct">
+            <div class="metric-top">
+              <span class="metric-label">Diagnósticos Corretos (Meta da Fase)</span>
+              <span class="metric-val" id="metric-correct-val">0 / 9 mín. (0 pts)</span>
+            </div>
+            <div class="metric-progress-bar">
+              <div class="metric-progress-fill" id="metric-correct-bar" style="width: 0%;"></div>
+            </div>
+            <span class="metric-hint" id="metric-correct-hint">Exigência: acertar no mínimo 9 das 12 questões normativas (900 pontos)</span>
+          </div>
+
+          <div class="criteria-metric-card" id="metric-card-total">
+            <div class="metric-top">
+              <span class="metric-label">Progresso Geral de Inspeção</span>
+              <span class="metric-val" id="metric-answered-val">0 / 12 analisados</span>
+            </div>
+            <div class="metric-progress-bar">
+              <div class="metric-progress-fill score-fill" id="metric-total-bar" style="width: 0%;"></div>
+            </div>
+            <span class="metric-hint" id="metric-total-hint">Cobertura completa: 4 perigos em cada um dos 3 cenários</span>
+          </div>
+        </div>
+
+        <div class="criteria-footer-hint" id="criteria-footer-hint">
+          <span>💡 Acerte ao menos 9 diagnósticos técnicos (900 pontos) para liberar o avanço para a Etapa 2.</span>
+        </div>
+      </footer>
+    </section>
+
+    <!-- VIEW 2: ETAPA 2 - PROCEDIMENTOS TÉCNICOS DE CAMPO -->
+    <section class="view-section" id="view-stage2">
+      <div class="stage-top-bar">
+        <div>
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;">
+            Etapa 2: Procedimentos Técnicos Operacionais de Campo
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Execute na prática os 3 procedimentos essenciais de segurança, ergonomia biomecânica e eficiência industrial.
+          </p>
+        </div>
+      </div>
+
+      <!-- Abas dos 3 Minigames -->
+      <div class="procedures-nav-bar" id="stage2-subnav" style="margin-top: 1.5rem;">
+        <!-- Renderizado dinamicamente -->
+      </div>
+
+      <!-- Container do Minigame Ativo -->
+      <div class="minigame-container" id="stage2-minigame-content">
+        <!-- Renderizado dinamicamente pelo stage2.js -->
+      </div>
+
+      <!-- Ações da Etapa 2 -->
+      <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
+        <button class="btn-next-stage" style="width: auto; padding: 0.8rem 2.5rem;" id="btn-next-stage2" onclick="appRouter.showView('stage3')" disabled>
+          <span>Avançar para Etapa 3 ➔</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- VIEW 3: ETAPA 3 - SAFETY BY DESIGN (RETROFIT INDUSTRIAL) -->
+    <section class="view-section" id="view-stage3">
+      <div class="stage-top-bar">
+        <div>
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;">
+            Etapa 3: Segurança no Projeto (Adequação da Fábrica "Laticínios Sabor do Campo")
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            A fábrica recebeu notificação fiscal por riscos ergonômicos (caixas de 15kg) e esteiras sem proteção. Aloque os componentes certos sem estourar o orçamento de R$ 85.000,00.
+          </p>
+        </div>
+      </div>
+
+      <div class="retrofit-layout" style="margin-top: 1.5rem;">
+        <!-- Planta Fabril / Blueprint -->
+        <div class="factory-blueprint-card">
+          <div id="blueprint-visual-wrap" class="blueprint-svg-wrap">
+            <!-- SVG dinâmico injetado via stage3.js -->
+          </div>
+        </div>
+
+        <!-- Catálogo de Componentes e Orçamento -->
+        <aside class="retrofit-catalog-card">
+          <div class="budget-meter-box">
+            <div class="budget-labels">
+              <span id="budget-spent-txt">Gasto: R$ 0,00</span>
+              <span id="budget-total-txt">Teto: R$ 85.000,00</span>
+            </div>
+            <div class="budget-bar-bg">
+              <div class="budget-bar-fill" id="budget-bar-fill"></div>
+            </div>
+          </div>
+
+          <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--tech-cyan);">
+            Catálogo de Componentes Disponíveis:
+          </h4>
+          <div class="catalog-items-wrap" id="retrofit-catalog-items">
+            <!-- Renderizado dinamicamente -->
+          </div>
+
+          <button class="btn-primary" id="btn-run-audit" onclick="stage3.runCommissioningAudit()">
+            <span>Simular Partida e Auditoria Final</span>
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- VIEW 4: TELA FINAL / CONCLUSÃO E LAUDO OFICIAL CONSOLIDADO -->
+    <section class="view-section" id="view-finish">
+      <div class="congrats-hero">
+        <div class="congrats-medal-icon">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="7"/>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+          </svg>
+        </div>
+        <h2 style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">
+          Missão Cumprida com Sucesso!
+        </h2>
+        <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Parabéns, <strong id="finish-student-name" style="color: var(--text-main);">Aluno</strong>! Você completou com excelência todas as etapas de conformidade normativa, ergonomia e projeto de automação.
+        </p>
+
+        <div class="congrats-score-pill" id="finish-total-score">
+          1000 PONTOS
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; text-align: left;">
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+            <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Etapa 1: Inspeção de Riscos</div>
+            <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--tech-cyan);" id="finish-s1-score">-</div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">12 perigos inspecionados com análise técnica de NR-10/12/17.</p>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+            <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Etapa 2: Procedimentos de Campo</div>
+            <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--warning-amber);" id="finish-s2-score">-</div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">LOTO, Linha Neutra RULA e Eficiência Energética homologados.</p>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem;">
+            <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Etapa 3: Segurança no Projeto</div>
+            <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--safety-green);" id="finish-s3-score">-</div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Planta 100% adequada com Safety by Design e dentro do orçamento.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <button class="btn-primary" style="width: auto; padding: 1rem 2.5rem; font-size: 1.05rem;" id="btn-download-final-pdf" onclick="stage3.downloadFinalPDF()">
+            <span>📄 Baixar Relatório da Atividade Prática (PDF)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       MODAL DE INSPEÇÃO TÉCNICA DO RISCO (QUIZ DIAGNÓSTICO)
+       =================================================================== -->
+  <div class="modal-overlay" id="hazard-modal" role="dialog" aria-modal="true" aria-labelledby="modal-hazard-title">
+    <div class="modal-content">
+      <div class="modal-header-tag" id="modal-hazard-tag">NR-12 MÁQUINAS</div>
+      <h3 class="modal-title" id="modal-hazard-title">Título do Perigo</h3>
+      <p class="modal-desc" id="modal-hazard-desc">Localização e Detalhes</p>
+
+      <div class="quiz-question-box">
+        <div class="quiz-q-title" id="modal-quiz-question">Pergunta técnica diagnóstica?</div>
+        <div class="quiz-options-list" id="modal-quiz-options">
+          <!-- Opções geradas via stage1.js -->
+        </div>
+      </div>
+
+      <div class="feedback-banner" id="modal-feedback-banner"></div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button style="background: none; border: 1px solid var(--border-subtle); color: var(--text-muted); padding: 0.75rem 1.25rem; border-radius: 8px; cursor: pointer;" onclick="stage1.closeInspectionModal()">
+          Cancelar
+        </button>
+        <button class="btn-primary" style="width: auto; padding: 0.75rem 1.75rem;" id="btn-confirm-inspection" onclick="stage1.submitInspectionAnswer()" disabled>
+          Confirmar Diagnóstico
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts e Bibliotecas -->
+  <script src="libs/jspdf.umd.min.js"></script>
+  <script src="libs/confetti.browser.min.js"></script>
+  <script src="js/sound.js?v=4.5"></script>
+  <script src="js/storage.js?v=4.5"></script>
+  <script src="js/security.js?v=4.5"></script>
+  <script src="js/pdfGenerator.js?v=4.5"></script>
+  <script src="js/stage1.js?v=4.5"></script>
+  <script src="js/stage2.js?v=4.5"></script>
+  <script src="js/stage3.js?v=4.5"></script>
+  <script src="js/app.js?v=4.5"></script>
+
+</body>
+</html>
